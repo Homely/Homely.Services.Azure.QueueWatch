@@ -22,7 +22,7 @@ namespace QueueWatch.TimerFunctions
 
         [FunctionName("Watcher")]
         [Singleton]
-        public async Task RunAsync([TimerTrigger("0 0 */1 * * *", RunOnStartup = true)] TimerInfo timer, CancellationToken cancellationToken)
+        public async Task RunAsync([TimerTrigger("0 0 */1 * * *")] TimerInfo timer, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Running QueueWatch...");
             await Task.WhenAll(_queuesToWatch.Select(queueToWatch => queueToWatch.CheckAsync(cancellationToken)));
